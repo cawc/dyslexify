@@ -1,0 +1,19 @@
+{
+    "manifest_version": 2,
+    "name": "Dislexify",
+    "version": "0.1",
+
+    "description": "Replaces words",
+
+    "icons": {
+
+    },
+
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["dislexify.js"]
+        }
+    ]
+
+}
