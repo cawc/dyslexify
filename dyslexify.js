@@ -29,3 +29,18 @@ function scrambleLetters(word) {
     word = word[0] + shuffledInnerWord + word[word.length-1]
     return word
 }
+
+const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+        if (mutation.addedNodes && mutation.addedNodes.length > 0) {
+            for (let i = 0; i < mutation.addedNodes.length; i++) {
+                const newNode = mutation.addedNodes[i];
+                scrambleAllText(newNode);
+            }
+        }
+    });
+  });
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });

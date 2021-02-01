@@ -1,19 +1,23 @@
 {
     "manifest_version": 2,
     "name": "Dislexify",
-    "version": "0.1",
+    "version": "0.3",
 
     "description": "Replaces words",
-
-    "icons": {
-
-    },
 
     "content_scripts": [
         {
             "matches": ["<all_urls>"],
             "js": ["dyslexify.js"]
         }
-    ]
+    ],
+
+    "browser_specific_settings": {
+        "gecko": {
+          "id": "dyslexify@caws.space",
+          "strict_min_version": "42.0"
+        }
+      }
+      
 
 }
