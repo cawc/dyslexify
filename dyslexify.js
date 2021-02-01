@@ -1,22 +1,23 @@
-let textElements = ['p', 'h1', 'h2', 'h3', 'li', 'a', 'span', 'button']
+scrambleAllText(document.body)
 
-
-    textElements.forEach(tagName => {
-        scrambleElements(document.getElementsByTagName(tagName))
-    })
-
-function scrambleElements(elements) {
-    for (let i = 0; i < elements.length; i++) {
-        if (elements[i].innerText && elements[i].innerText.length > 3) {
-            let sentence = elements[i].innerText;
-            let editedSentence = sentence.split(' ')
-            for (let j = 0; j < editedSentence.length; j++) {
-                editedSentence[j] = scrambleLetters(editedSentence[j]);
-            }
-            editedSentence = editedSentence.join(' ')
-            elements[i].innerText = editedSentence;
+function scrambleAllText(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+        let content = node.textContent
+        let editedContent = scrambleTextBlock(content)
+        node.textContent = editedContent
+    } else {
+        for (let i = 0; i < node.childNodes.length; i++) {
+            scrambleAllText(node.childNodes[i])
         }
     }
+}
+
+function scrambleTextBlock(text) {
+    let textArray = text.split(' ')
+    for (let i = 0; i < textArray.length; i++) {
+        textArray[i] = scrambleLetters(textArray[i])        
+    }
+    return textArray.join(' ')
 }
 
 function scrambleLetters(word) {
